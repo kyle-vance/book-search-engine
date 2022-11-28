@@ -6,8 +6,8 @@ import Navbar from './components/Navbar';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-const createHttpLink = createHttpLink({
-  url: '/graphql',
+const HTTP = createHttpLink({
+  uri: '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => { 
@@ -21,7 +21,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(createHttpLink),
+  link: authLink.concat(HTTP),
   cache: new InMemoryCache(),
 });
 
